@@ -1,31 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package reservas;
 
-/**
- *
- * @author David Parreira
- */
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Vector;
 
 public class EspacoImpl extends UnicastRemoteObject implements Espaco, java.io.Serializable {
-   
     String name;
     int cost;
-
-   EspacoImpl(String name, int cost ){
-    this.name = name;
-    this.cost = cost;
+    
+public EspacoImpl (String name, int cost) throws RemoteException{
+    name= name;
+    cost= cost;
+}
+    @Override
+    public String getName() throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   public String getName(){}
-   public void setName(String name){};
-   public int getCost(){};
-   public void setCost(){};
+    @Override
+    public void setName(String name) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getCost() throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setCost() throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
