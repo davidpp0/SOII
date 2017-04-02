@@ -24,7 +24,7 @@ public class ReservasClient {
 	    // objeto que fica associado ao proxy para objeto remoto
 	    Reservas obj =
 		(Reservas) java.rmi.Naming.lookup("rmi://" + regHost + ":" + 
-						  regPort + "/palavras");
+						  regPort + "/reservas");
 	    
 
 	    // invocacao de metodos remotos
