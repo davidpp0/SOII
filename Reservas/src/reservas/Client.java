@@ -3,7 +3,7 @@ package reservas;
 
 import java.util.Vector;
 
-public class ReservasClient {
+public class Client {
 
     public static void main(String args[]) {
 	String regHost = "localhost";

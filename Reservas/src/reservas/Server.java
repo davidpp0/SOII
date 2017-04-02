@@ -2,7 +2,7 @@ package reservas;
 
 
 
-public class ReservasServer {
+public class Server {
 
     public static void main(String args[]) {
         int regPort= 1099; // default RMIRegistry port

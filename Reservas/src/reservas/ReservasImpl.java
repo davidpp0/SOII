@@ -4,7 +4,6 @@ package reservas;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
-import java.util.Vector;
 
 public class ReservasImpl extends UnicastRemoteObject implements Reservas, java.io.Serializable {
 
@@ -55,42 +54,42 @@ public class ReservasImpl extends UnicastRemoteObject implements Reservas, java.
 
     @Override
     public int getHoraInicio() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return horaInicio;
     }
 
     @Override
     public int getHoraFim() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return horaFim;
     }
 
     @Override
     public Date getDia() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dia;
     }
 
     @Override
     public Espaço getEspaço() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return espaço;
     }
 
     @Override
     public void setHoraInicio(int h) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        horaInicio = h;
     }
 
     @Override
     public void setHoraFim(int h) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        horaFim = h;
     }
 
     @Override
     public void setDia(Date d) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dia = d;
     }
 
     @Override
-    public void setEspaço(Espaço E) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setEspaço(Espaço e) throws RemoteException {
+        espaço = e;
     }
   
 }
