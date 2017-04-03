@@ -6,11 +6,11 @@ import java.util.Date;
 public class disponibilidade implements java.io.Serializable {
     int hora;
     Date data;
-    Espaço espaço;
+    String nomeEspaço;
     
-    public disponibilidade(int hora, Date data, Espaço espaço){
+    public disponibilidade(int hora, Date data,String nomeEspaço){
         this.hora = hora;
         this.data = data;
-        this.espaço = espaço;
+        this.nomeEspaço = nomeEspaço;
     }
 }

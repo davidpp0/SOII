@@ -7,6 +7,7 @@ public enum Espaço {
     
     private String nome;
     private int custo;
+    
     Espaço(String nome, int custo) {
         this.nome=nome;
         this.custo = custo;
@@ -17,7 +18,7 @@ public enum Espaço {
         }
     
         int getCusto() {
-        return this.custo;
+            return this.custo;
     }
        
 }
