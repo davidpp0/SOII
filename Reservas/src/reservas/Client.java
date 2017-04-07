@@ -4,7 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Vector;
 
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 public class Client {
+  
     /*
     public Object[] askIn() {
         Scanner reader = new Scanner(System.in);
@@ -30,9 +33,9 @@ public class Client {
             System.out.print("Insira o comando:");
             s = reader.next();
             System.out.println("");
-            //Incluir um exit e verificações e ciclos para pedir o input de novo
+            //Incluir um exit e verificacoes e ciclos para pedir o input de novo
             if (s.equalsIgnoreCase("listarEspacos")) {
-                //escrever codigo para pedir ao sv para listar espaços
+                //escrever codigo para pedir ao sv para listar espacos
 
             } else if (s.equalsIgnoreCase("disponibilidade")) {
                 System.out.print("Por favor indique qual o servico");
@@ -145,11 +148,12 @@ public class Client {
     public static void main(String args[]) {
         // invocacao de metodos remotos
         @SuppressWarnings("unused")
-        boolean l = Client.menu();
+       // boolean l = Client.menu();
         String regHost = "localhost";
-        String regPort = "9000";  // porto do binder
+        String regPort = "9001";  // porto do binder
         String nomeReserva = "";
-
+        
+        /*
         if (args.length != 3) { // requer 3 argumentos
             System.out.println("Usage: java so2.rmi.PalavrasClient registryHost registryPort frase");
             System.exit(1);
@@ -157,12 +161,18 @@ public class Client {
         regHost = args[0];
         regPort = args[1];
         nomeReserva = args[2];
-
+        */
         try {
             // objeto que fica associado ao proxy para objeto remoto
-            Reservas obj
-                    = (Reservas) java.rmi.Naming.lookup("r mi://" + regHost + ":"
-                            + regPort + "/reservas");
+                Registry registry = LocateRegistry.getRegistry(regHost);
+                Reservas stub = (Reservas)  java.rmi.Naming.lookup("rmi://" + regHost + ":" + regPort + "/reservas");
+        
+                stub.setHoraInicio(5);
+                int response = stub.getHoraInicio();
+                stub.setHoraFim(10);
+                int result = stub.getHoraFim();
+                System.out.println("response:"+ response);
+                System.out.println("response"+result);
 
         } catch (Exception ex) {
             ex.printStackTrace();

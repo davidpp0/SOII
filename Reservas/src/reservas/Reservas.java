@@ -11,16 +11,22 @@ public interface Reservas extends java.rmi.Remote {
 
     public int getHoraFim() throws java.rmi.RemoteException;
     
-    public Date getDia() throws java.rmi.RemoteException;
+    public Date getDiaInicio() throws java.rmi.RemoteException;
+   
+    public Date getDiaFim() throws java.rmi.RemoteException;
     
-    public Espaço getEspaço() throws java.rmi.RemoteException;
+    public Espaco getEspaco() throws java.rmi.RemoteException;
     
     public void setHoraInicio(int h) throws java.rmi.RemoteException;
 
     public void setHoraFim(int h) throws java.rmi.RemoteException;
     
-    public void setDia(Date d) throws java.rmi.RemoteException;
+    public void setDiaInicio(Date d) throws java.rmi.RemoteException;
     
-    public void setEspaço(Espaço E) throws java.rmi.RemoteException;
+    public void setDiaFim(Date d) throws java.rmi.RemoteException;
+    
+    public void setEspaco(Espaco E) throws java.rmi.RemoteException;
+    
+    public boolean availability(String espaco, int h, Date day);
 
 }

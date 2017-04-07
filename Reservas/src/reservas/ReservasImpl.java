@@ -10,23 +10,23 @@ public class ReservasImpl extends UnicastRemoteObject implements Reservas, java.
     int horaInicio;
     int horaFim;
     Date dia;
-    Espaço espaço;
+    Espaco espaco;
     
     public ReservasImpl() throws java.rmi.RemoteException {}
     
-    public ReservasImpl(int horaInicio, int horaFim, Date dia, Espaço e) throws java.rmi.RemoteException {
+    public ReservasImpl(int horaInicio, int horaFim, Date dia, Espaco e) throws java.rmi.RemoteException {
         this.horaInicio = horaInicio;
         this.horaFim = horaFim;
         this.dia = dia;
-        espaço = e;
+        espaco = e;
     }
 
    
-   /* public boolean espaçoLivre(ReservasImpl[] listaReservas,String nomeEspaço, int hora) throws RemoteException {
+   /* public boolean espacoLivre(ReservasImpl[] listaReservas,String nomeEspaco, int hora) throws RemoteException {
        boolean result = true;
        
           for (ReservasImpl reserva:listaReservas){
-               if(reserva.espaço.getNome().equals(nomeEspaço) && reserva.horaInicio == hora){
+               if(reserva.espaco.getNome().equals(nomeEspaco) && reserva.horaInicio == hora){
                    result = false;
                    break;
                }
@@ -67,9 +67,9 @@ public class ReservasImpl extends UnicastRemoteObject implements Reservas, java.
         return dia;
     }
 
-    @Override
-    public Espaço getEspaço() throws RemoteException {
-        return espaço;
+  
+    public Espaco getEspaco() throws RemoteException {
+        return espaco;
     }
 
     @Override
@@ -87,9 +87,9 @@ public class ReservasImpl extends UnicastRemoteObject implements Reservas, java.
         dia = d;
     }
 
-    @Override
-    public void setEspaço(Espaço e) throws RemoteException {
-        espaço = e;
+    
+    public void setEspaco(Espaco e) throws RemoteException {
+        espaco = e;
     }
   
 }
