@@ -6,6 +6,8 @@ import java.util.Vector;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 public class Client {
   
     /*
@@ -43,8 +45,8 @@ public class Client {
                 System.out.println("");
                 if (s.equalsIgnoreCase("futsal")) {
                 	try{
-                		System.out.print("Insira a h:");
-                		int h = reader.nextInt();
+                            System.out.print("Insira a h:");
+                            int h = reader.nextInt();
                 	}catch(InputMismatchException e){};
                     System.out.println("");
                     System.out.print("insira o dia:");
@@ -150,29 +152,39 @@ public class Client {
         @SuppressWarnings("unused")
        // boolean l = Client.menu();
         String regHost = "localhost";
-        String regPort = "9001";  // porto do binder
-        String nomeReserva = "";
+        String regPort = "9000";  // porto do binder
         
-        /*
-        if (args.length != 3) { // requer 3 argumentos
-            System.out.println("Usage: java so2.rmi.PalavrasClient registryHost registryPort frase");
+        
+        
+       /* if (args.length != 2) { // requer 3 argumentos
+            System.out.println("Usage: java so2.rmi.Client registryHost registryPort");
             System.exit(1);
         }
         regHost = args[0];
-        regPort = args[1];
-        nomeReserva = args[2];
-        */
+        regPort = args[1];*/
+     
+        
         try {
             // objeto que fica associado ao proxy para objeto remoto
-                Registry registry = LocateRegistry.getRegistry(regHost);
-                Reservas stub = (Reservas)  java.rmi.Naming.lookup("rmi://" + regHost + ":" + regPort + "/reservas");
+                //Registry registry = LocateRegistry.getRegistry(regHost);
+                Servicos stub = (Servicos)  java.rmi.Naming.lookup("rmi://" + regHost + ":" + regPort + "/servicos");
         
-                stub.setHoraInicio(5);
+               /* stub.setHoraInicio(5);
                 int response = stub.getHoraInicio();
                 stub.setHoraFim(10);
                 int result = stub.getHoraFim();
                 System.out.println("response:"+ response);
-                System.out.println("response"+result);
+                System.out.println("response"+result);*/
+            
+            //teste da funçao listar_espaços
+            ArrayList<String> list = stub.listar_espacos();
+               
+            for (String list1 : list) {
+                System.out.println(list1);
+            }
+           
+         
+                
 
         } catch (Exception ex) {
             ex.printStackTrace();
