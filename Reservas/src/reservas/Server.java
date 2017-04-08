@@ -15,17 +15,17 @@ public class Server{
 	// parte desta aplicacao servidor
 	// aqui usamos o externo
 
-	int regPort= 1099; // default RMIRegistry port
+	int regPort= 9000; // default RMIRegistry port 1099
 
-	if (args.length !=1) { // obrigar 'a presenca de um argumento
+	/*if (args.length !=1) { // obrigar 'a presenca de um argumento
 	    System.out.println("Usage: java so2.rmi.Server registryPort");
 	    System.exit(1);
-	}
+	}*/
 	
 
 	try {
 	    // ATENCAO: este porto e' relativo ao binder e nao ao servidor RMI
-	    regPort=Integer.parseInt(args[0]);
+	//    regPort=Integer.parseInt(args[0]);
 
 
 	    // criar um Objeto Remoto

@@ -176,15 +176,20 @@ public class Client {
                 System.out.println("response:"+ response);
                 System.out.println("response"+result);*/
             
-            //teste da funçao listar_espaços
-            ArrayList<String> list = stub.listar_espacos();
+           //teste da funçao listar_espaços
+           ArrayList<String> list = stub.listar_espacos();
                
             for (String list1 : list) {
                 System.out.println(list1);
             }
            
-         
-                
+            System.out.println();
+           
+            //teste da funçao listar_reservas
+           ArrayList<String> reservas = stub.listar_reservas("futsal");
+            for (String reservas1 : reservas) {
+                System.out.println(reservas1);
+            }  
 
         } catch (Exception ex) {
             ex.printStackTrace();

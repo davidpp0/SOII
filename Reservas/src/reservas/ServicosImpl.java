@@ -25,7 +25,7 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
   
    
     public ArrayList<String> listar_espacos() throws RemoteException {
-    ArrayList<String> info = null;  
+    ArrayList<String> info = new ArrayList();  
  
     //estabelecer conexao com bd
        try {
@@ -44,7 +44,10 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
                 String custo=Integer.toString(rs.getInt("custo"));
                 info.add("Espaço: "+nome+" Custo: "+custo);
              }
-        
+             
+               
+         //fecha ligaçao com a bd
+         pc.disconnect();
                
           
         } catch (Exception e) {
@@ -70,8 +73,38 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
     }
 
     
-    public void listar_reservas(String nomeEspaco) throws RemoteException {
+    public ArrayList<String> listar_reservas(String nomeEspaco) throws RemoteException {
+        ArrayList<String> info = new ArrayList();  
+ 
+    //estabelecer conexao com bd
+       try {
+           pc.connect();
+       } catch (Exception ex) {
+           Logger.getLogger(ServicosImpl.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      
+        try {
+            
+            //query para selecionar tabela dos campos
+             ResultSet rs = pc.getStatement().executeQuery("SELECT dataInicio, dataFim FROM reservas WHERE nomeEspaco='"+nomeEspaco+"'");
+            //escreve lista dos espaços e respetivos custos
+             while (rs.next()) {
+                String dataInicio  = rs.getTimestamp("dataInicio").toString();
+                String dataFim  = rs.getTimestamp("dataFim").toString();
+                info.add("Espaço reservado de: "+dataInicio+" a "+dataFim);
+             }
+             
+                //fecha ligaçao com a bd
+               pc.disconnect();
+               
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Problems retrieving data from db...");
+        }
         
+    
+         return info;
     }
     
    
