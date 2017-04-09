@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/migueljesus/Desktop/SOII/Reservas/src/reservas/Servicos.java</file>
+            <file>file:/Users/migueljesus/Desktop/SOII/Reservas/src/reservas/Server.java</file>
+            <file>file:/Users/migueljesus/Desktop/SOII/Reservas/src/reservas/BDConnector.java</file>
+            <file>file:/Users/migueljesus/Desktop/SOII/Reservas/src/reservas/Client.java</file>
+            <file>file:/Users/migueljesus/Desktop/SOII/Reservas/src/reservas/ServicosImpl.java</file>
+        </group>
     </open-files>
 </project-private>

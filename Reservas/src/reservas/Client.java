@@ -185,17 +185,28 @@ public class Client {
            
             System.out.println();
            
-            //teste da funçao listar_reservas
-           ArrayList<String> reservas = stub.listar_reservas("futsal");
-            for (String reservas1 : reservas) {
-                System.out.println(reservas1);
-            }  
+         
             
             System.out.println();
            
             //teste funçao disponibilidade
             boolean disp = stub.disponibilidade("futsal", "2016-1-2 8:50:00");
             System.out.println(disp);
+            
+            //teste funçao reserva
+            boolean reserva =stub.reserva("tonel","futsal","2016-1-2 11:50:00" ,"2016-1-2 12:00:00",266733145,2);
+            if(reserva){
+                System.out.println("Sucesso");
+            }
+            else {
+                 System.out.println("Impossivel marcar!");
+            }
+                    
+            //teste da funçao listar_reservas
+           ArrayList<String> reservas = stub.listar_reservas("tenis");
+            for (String reservas1 : reservas) {
+                System.out.println(reservas1);
+            }  
             
         } catch (Exception ex) {
             ex.printStackTrace();

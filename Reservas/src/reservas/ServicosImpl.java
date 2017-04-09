@@ -96,8 +96,48 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
     }
 
     
-    public void reserva(String nomeEspaco, Timestamp dataInicio, Timestamp dataFim, int telefone, double custoEstimado, int numUtilizadores) throws RemoteException {
-        
+    public boolean reserva(String nome,String nomeEspaco,String dataInicio, String dataFim, int telefone, int numUtilizadores) throws RemoteException {
+        if(disponibilidade(nomeEspaco,dataInicio)==false || disponibilidade(nomeEspaco,dataFim)==false){
+            return false;
+        }
+        else{
+            try {
+                pc.connect();
+            } catch (Exception ex) {
+                Logger.getLogger(ServicosImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+
+                //query para selecionar tabela dos campos
+                ResultSet rs = pc.getStatement().
+                        executeQuery("SELECT custo FROM campos WHERE nomeEspaco='"+nomeEspaco+"'");
+                int custo =0;
+                if(rs.next()){
+                    custo = rs.getInt(1);
+                    System.err.println(custo);
+                }       
+                System.err.println(custo);
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date1 = format.parse(dataInicio);
+                Date date2 = format.parse(dataFim);
+                long difference = date2.getTime() - date1.getTime(); //intervalo de tempo em milisegundos 
+                double diffHours = (double) difference / (60 * 60 * 1000) % 24; //conversao de milisegundos para horas
+                double custoEstimado = (double) custo*diffHours;
+                System.err.println(custoEstimado);
+                pc.getStatement().executeUpdate("insert into reservas(nome,nomeEspaco,dataInicio,dataFim,telefone,custoEstimado,numUtilizadores) "
+                        + " values('"+nome+"','"+nomeEspaco+"','"+dataInicio+"','"+dataFim+"',"+telefone+","+custoEstimado+","+numUtilizadores+")");
+                //fecha ligaçao com a bd
+                pc.disconnect();
+                
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Problems retrieving data from db...");
+            }
+            
+            return true;
+        }
     }
 
     
