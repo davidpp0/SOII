@@ -6,7 +6,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,8 +64,34 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
     }
 
    
-    public boolean disponibilidade(String nomeEspaco, Timestamp data) throws RemoteException {
-        return false;
+ 
+    public boolean disponibilidade(String nomeEspaco,String data) throws RemoteException {
+        boolean result=false;
+       //estabelecer conexao com bd
+       try {
+           pc.connect();
+       } catch (Exception ex) {
+           Logger.getLogger(ServicosImpl.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      
+        try {
+           
+            //query para selecionar tabela dos campos
+             ResultSet rs = pc.getStatement().executeQuery("SELECT id FROM reservas WHERE nomeEspaco='"+nomeEspaco+"' and dataInicio<='"+data+"' and dataFim>'"+data+"'");
+             if(!rs.next()){
+                 result=true;
+             }
+           
+             
+                //fecha ligaçao com a bd
+               pc.disconnect();
+               
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Problems retrieving data from db...");
+        }
+       return result;
         
     }
 

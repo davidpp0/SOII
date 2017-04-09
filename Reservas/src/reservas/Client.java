@@ -190,7 +190,13 @@ public class Client {
             for (String reservas1 : reservas) {
                 System.out.println(reservas1);
             }  
-
+            
+            System.out.println();
+           
+            //teste funçao disponibilidade
+            boolean disp = stub.disponibilidade("futsal", "2016-1-2 8:50:00");
+            System.out.println(disp);
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
