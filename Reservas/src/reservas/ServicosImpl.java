@@ -118,7 +118,7 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
                     System.err.println(custo);
                 }       
                 System.err.println(custo);
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 Date date1 = format.parse(dataInicio);
                 Date date2 = format.parse(dataFim);
                 long difference = date2.getTime() - date1.getTime(); //intervalo de tempo em milisegundos 
