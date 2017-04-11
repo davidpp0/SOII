@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Vector;
 
 public class Server{
-
+    
     public static void main(String args[]) {
 	// assume-se que o Servico de Nomes e' local
 	// pode ser um processo autonomo ou 

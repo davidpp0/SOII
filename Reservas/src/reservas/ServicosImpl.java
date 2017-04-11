@@ -49,7 +49,8 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
              
                
          //fecha ligaçao com a bd
-         pc.disconnect();
+         
+        pc.disconnect();
                
           
         } catch (Exception e) {
@@ -76,12 +77,11 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
       
         try {
            
-            //query para selecionar tabela dos campos
              ResultSet rs = pc.getStatement().executeQuery("SELECT id FROM reservas WHERE nomeEspaco='"+nomeEspaco+"' and dataInicio<='"+data+"' and dataFim>'"+data+"'");
              if(!rs.next()){
                  result=true;
              }
-           
+             
              
                 //fecha ligaçao com a bd
                pc.disconnect();
@@ -96,9 +96,10 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
     }
 
     
-    public boolean reserva(String nome,String nomeEspaco,String dataInicio, String dataFim, int telefone, int numUtilizadores) throws RemoteException {
+    public double reserva(String nome,String nomeEspaco,String dataInicio, String dataFim, int telefone, int numUtilizadores) throws RemoteException {
+           double custoEstimado=0;
         if(disponibilidade(nomeEspaco,dataInicio)==false || disponibilidade(nomeEspaco,dataFim)==false){
-            return false;
+            return 0;
         }
         else{
             try {
@@ -123,7 +124,7 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
                 Date date2 = format.parse(dataFim);
                 long difference = date2.getTime() - date1.getTime(); //intervalo de tempo em milisegundos 
                 double diffHours = (double) difference / (60 * 60 * 1000) % 24; //conversao de milisegundos para horas
-                double custoEstimado = (double) custo*diffHours;
+                custoEstimado = (double) custo*diffHours;
                 System.err.println(custoEstimado);
                 pc.getStatement().executeUpdate("insert into reservas(nome,nomeEspaco,dataInicio,dataFim,telefone,custoEstimado,numUtilizadores) "
                         + " values('"+nome+"','"+nomeEspaco+"','"+dataInicio+"','"+dataFim+"',"+telefone+","+custoEstimado+","+numUtilizadores+")");
@@ -135,10 +136,13 @@ public class ServicosImpl extends UnicastRemoteObject implements Servicos, java.
                 e.printStackTrace();
                 System.err.println("Problems retrieving data from db...");
             }
+           
             
-            return true;
+            return custoEstimado;
         }
+        
     }
+    
 
     
     public ArrayList<String> listar_reservas(String nomeEspaco) throws RemoteException {

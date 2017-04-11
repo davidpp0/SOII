@@ -9,9 +9,9 @@ import java.sql.Statement;
 public class BDConnector {
    
 
-    private String PG_HOST="localhost";
-    private String PG_DB="postgres";
-    private String USER="postgres";
+    private String PG_HOST="alunos.di.uevora.pt";
+    private String PG_DB="l36926";
+    private String USER="l36926";
     private String PWD="miguel";
 
     Connection con = null;
